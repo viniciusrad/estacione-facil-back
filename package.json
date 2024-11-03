@@ -1,0 +1,37 @@
+{
+    "name": "estacione-facil-backend",
+    "version": "1.0.0",
+    "description": "Backend for Estacione Facil",
+    "main": "dist/main.js",
+    "scripts": {
+        "start": "nest start",
+        "start:dev": "nest start --watch",
+        "build": "nest build",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage",
+        "test:e2e": "jest --config ./test/jest-e2e.json"
+    },
+    "dependencies": {
+        "@nestjs/common": "^9.4.3",
+        "@nestjs/core": "^9.4.3",
+        "@nestjs/platform-express": "^9.4.3",
+        "class-transformer": "^0.5.1",
+        "class-validator": "^0.13.2",
+        "cors": "^2.8.5",
+        "reflect-metadata": "^0.1.14",
+        "rxjs": "^7.8.1"
+    },
+    "devDependencies": {
+        "@nestjs/cli": "^9.5.0",
+        "@nestjs/schematics": "^9.0.0",
+        "@nestjs/testing": "^9.0.0",
+        "@types/jest": "^27.0.0",
+        "@types/node": "^22.8.6",
+        "jest": "^27.0.0",
+        "ts-jest": "^27.0.0",
+        "ts-loader": "^9.0.0",
+        "ts-node": "^10.0.0",
+        "typescript": "^4.9.5"
+    }
+}
