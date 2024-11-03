@@ -10,11 +10,12 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const users_module_1 = require("./users/users.module");
 const vehicles_module_1 = require("./vehicles/vehicles.module");
+const cartoes_module_1 = require("./cartoes/cartoes.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, vehicles_module_1.VehiclesModule],
+        imports: [users_module_1.UsersModule, vehicles_module_1.VehiclesModule, cartoes_module_1.CartoesModule],
     })
 ], AppModule);
 exports.AppModule = AppModule;
