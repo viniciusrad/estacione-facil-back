@@ -1,6 +1,8 @@
-import { IsString, IsEmail, IsNotEmpty } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
+import { UserType } from '../enums/user-type.enum';
 
 export class BaseUserDto {
+
   @IsString()
   @IsNotEmpty()
   readonly nome: string;
@@ -20,4 +22,8 @@ export class BaseUserDto {
   @IsString()
   @IsNotEmpty()
   readonly senha: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly tipo: UserType;
 } 

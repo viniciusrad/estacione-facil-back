@@ -1,8 +1,9 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Query, BadRequestException } from '@nestjs/common';
 import { AdminUsersService } from './admin-users.service';
 import { CreateAdminUserDto } from './dto/create-admin-user.dto';
-import { AdminUser } from './entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 import { UserType } from './enums/user-type.enum';
+import { User } from '../entities/user.entity';
 
 @Controller('admin/users')
 export class AdminUsersController {
@@ -11,8 +12,13 @@ export class AdminUsersController {
   @Post()
   async create(@Body() createAdminUserDto: CreateAdminUserDto): Promise<AdminUser> {
     try {
+      let lastId = Math.max(...this.adminUsersService.findAll().map(user => user.id), 0);
+      if (lastId === -Infinity) {
+        lastId = 0;
+      }
       const adminData = {
         ...createAdminUserDto,
+        id: lastId + 1,
         tipo: UserType.ADMIN
       };
 
@@ -27,7 +33,7 @@ export class AdminUsersController {
         throw new BadRequestException('CPF já cadastrado');
       }
 
-      return this.adminUsersService.create(adminData);
+      return this.adminUsersService.create(adminData as User);
     } catch (error) {
       throw new BadRequestException(error.message);
     }
@@ -51,7 +57,7 @@ export class AdminUsersController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateAdminDto: Partial<CreateAdminUserDto>): AdminUser {
+  update(@Param('id') id: string, @Body() updateAdminDto: Partial<AdminUser>): AdminUser {
     return this.adminUsersService.update(+id, updateAdminDto);
   }
 

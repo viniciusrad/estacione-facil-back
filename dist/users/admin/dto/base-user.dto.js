@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseUserDto = void 0;
 const class_validator_1 = require("class-validator");
+const user_type_enum_1 = require("../enums/user-type.enum");
 class BaseUserDto {
 }
 __decorate([
@@ -38,5 +39,10 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], BaseUserDto.prototype, "senha", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], BaseUserDto.prototype, "tipo", void 0);
 exports.BaseUserDto = BaseUserDto;
 //# sourceMappingURL=base-user.dto.js.map

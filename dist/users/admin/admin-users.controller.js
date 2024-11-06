@@ -24,7 +24,11 @@ let AdminUsersController = class AdminUsersController {
     }
     async create(createAdminUserDto) {
         try {
-            const adminData = Object.assign(Object.assign({}, createAdminUserDto), { tipo: user_type_enum_1.UserType.ADMIN });
+            let lastId = Math.max(...this.adminUsersService.findAll().map(user => user.id), 0);
+            if (lastId === -Infinity) {
+                lastId = 0;
+            }
+            const adminData = Object.assign(Object.assign({}, createAdminUserDto), { id: lastId + 1, tipo: user_type_enum_1.UserType.ADMIN });
             const existingUserEmail = this.adminUsersService.findByEmail(adminData.email);
             const existingUserCpf = this.adminUsersService.findByCpf(adminData.cpf);
             if (existingUserEmail) {

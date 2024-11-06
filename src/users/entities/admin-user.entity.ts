@@ -1,4 +1,4 @@
-import { UserType } from '../enums/user-type.enum';
+import { UserType } from '../admin/enums/user-type.enum';
 
 export class AdminUser {
   id: number;

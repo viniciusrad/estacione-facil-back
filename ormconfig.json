@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "host": "rlzdugvdznlucvzyywiw.supabase.co",
+    "port": 5432,
+    "username": "viniciusrad",
+    "password": "Vinicius123",
+    "database": "postgres",
+    "synchronize": true,
+    "logging": true,
+    "entities": [
+      "src/users/admin/entities/*.ts"
+    ]
+  }

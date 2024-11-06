@@ -1,11 +1,10 @@
-import { CreateAdminUserDto } from './dto/create-admin-user.dto';
-import { CreateProprietarioDto } from './dto/create-proprietario.dto';
-import { CreateClienteDto } from './dto/create-cliente.dto';
 import { AdminUser } from './entities/admin-user.entity';
 import { UserType } from './enums/user-type.enum';
+import { BaseUserDto } from './dto/base-user.dto';
+import { User } from './entities/user.entity';
 export declare class AdminUsersService {
     private users;
-    create(createUserDto: CreateAdminUserDto | CreateProprietarioDto | CreateClienteDto): AdminUser;
+    create(createUserDto: BaseUserDto): User;
     findAll(): AdminUser[];
     findOne(id: number): AdminUser;
     findByType(tipo: UserType): AdminUser[];

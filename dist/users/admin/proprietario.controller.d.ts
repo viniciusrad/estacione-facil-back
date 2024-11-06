@@ -7,6 +7,6 @@ export declare class ProprietarioController {
     create(createProprietarioDto: CreateProprietarioDto): Promise<AdminUser>;
     findAll(): AdminUser[];
     findOne(id: string): AdminUser;
-    update(id: string, updateProprietarioDto: Partial<CreateProprietarioDto>): AdminUser;
+    update(id: string, updateProprietarioDto: Partial<AdminUser>): AdminUser;
     remove(id: string): void;
 }

@@ -1,5 +1,5 @@
 import { UserType } from '../admin/enums/user-type.enum';
-import { AdminUser } from '../admin/entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 
 export const mockUsers: AdminUser[] = [
   {

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, BadRequestException } from '@nestjs/common';
 import { AdminUsersService } from './admin-users.service';
 import { CreateProprietarioDto } from './dto/create-proprietario.dto';
-import { AdminUser } from './entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 import { UserType } from './enums/user-type.enum';
 
 @Controller('proprietario')
@@ -48,7 +48,7 @@ export class ProprietarioController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateProprietarioDto: Partial<CreateProprietarioDto>): AdminUser {
+  update(@Param('id') id: string, @Body() updateProprietarioDto: Partial<AdminUser>): AdminUser {
     return this.adminUsersService.update(+id, updateProprietarioDto);
   }
 

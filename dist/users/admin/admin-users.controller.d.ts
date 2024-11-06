@@ -8,7 +8,7 @@ export declare class AdminUsersController {
     create(createAdminUserDto: CreateAdminUserDto): Promise<AdminUser>;
     findAll(tipo?: UserType): AdminUser[];
     findOne(id: string): AdminUser;
-    update(id: string, updateAdminDto: Partial<CreateAdminUserDto>): AdminUser;
+    update(id: string, updateAdminDto: Partial<AdminUser>): AdminUser;
     remove(id: string): void;
     getMockUsers(): AdminUser[];
 }

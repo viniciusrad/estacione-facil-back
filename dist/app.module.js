@@ -8,14 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const users_module_1 = require("./users/users.module");
-const vehicles_module_1 = require("./vehicles/vehicles.module");
-const cartoes_module_1 = require("./cartoes/cartoes.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
+const admin_users_module_1 = require("./users/admin/admin-users.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, vehicles_module_1.VehiclesModule, cartoes_module_1.CartoesModule],
+        imports: [
+            config_1.ConfigModule.forRoot(),
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: process.env.SUPABASE_HOST,
+                port: parseInt(process.env.SUPABASE_PORT),
+                username: process.env.SUPABASE_USER,
+                password: process.env.SUPABASE_PASSWORD,
+                database: process.env.SUPABASE_DB_NAME,
+                entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                synchronize: true,
+                ssl: {
+                    rejectUnauthorized: false,
+                },
+                logging: true,
+            }),
+            admin_users_module_1.AdminUsersModule,
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;

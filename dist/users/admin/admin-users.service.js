@@ -14,7 +14,7 @@ let AdminUsersService = class AdminUsersService {
         this.users = [...users_mock_1.mockUsers];
     }
     create(createUserDto) {
-        const user = Object.assign(Object.assign({ id: Math.max(...this.users.map(u => u.id)) + 1 }, createUserDto), { createdAt: new Date(), updatedAt: new Date() });
+        const user = Object.assign(Object.assign({ id: Math.max(...this.users.map(u => u.id)) + 1 }, createUserDto), { tipo: createUserDto.tipo, createdAt: new Date(), updatedAt: new Date() });
         this.users.push(user);
         return user;
     }
