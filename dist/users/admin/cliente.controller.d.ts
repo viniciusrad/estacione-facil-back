@@ -1,6 +1,6 @@
 import { AdminUsersService } from './admin-users.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
-import { AdminUser } from './entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 export declare class ClienteController {
     private readonly adminUsersService;
     constructor(adminUsersService: AdminUsersService);

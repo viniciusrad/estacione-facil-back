@@ -1,7 +1,7 @@
-import { AdminUser } from './entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 import { UserType } from './enums/user-type.enum';
 import { BaseUserDto } from './dto/base-user.dto';
-import { User } from './entities/user.entity';
+import { User } from '../entities/user.entity';
 export declare class AdminUsersService {
     private users;
     create(createUserDto: BaseUserDto): User;

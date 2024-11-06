@@ -1,6 +1,6 @@
 import { AdminUsersService } from './admin-users.service';
 import { CreateProprietarioDto } from './dto/create-proprietario.dto';
-import { AdminUser } from './entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 export declare class ProprietarioController {
     private readonly adminUsersService;
     constructor(adminUsersService: AdminUsersService);

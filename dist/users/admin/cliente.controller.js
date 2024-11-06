@@ -16,7 +16,7 @@ exports.ClienteController = void 0;
 const common_1 = require("@nestjs/common");
 const admin_users_service_1 = require("./admin-users.service");
 const create_cliente_dto_1 = require("./dto/create-cliente.dto");
-const admin_user_entity_1 = require("./entities/admin-user.entity");
+const admin_user_entity_1 = require("../entities/admin-user.entity");
 const user_type_enum_1 = require("./enums/user-type.enum");
 let ClienteController = class ClienteController {
     constructor(adminUsersService) {

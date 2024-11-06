@@ -1,6 +1,6 @@
 import { AdminUsersService } from './admin-users.service';
 import { CreateAdminUserDto } from './dto/create-admin-user.dto';
-import { AdminUser } from './entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 import { UserType } from './enums/user-type.enum';
 export declare class AdminUsersController {
     private readonly adminUsersService;

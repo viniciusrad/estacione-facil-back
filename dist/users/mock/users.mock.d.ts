@@ -1,2 +1,2 @@
-import { AdminUser } from '../admin/entities/admin-user.entity';
+import { AdminUser } from '../entities/admin-user.entity';
 export declare const mockUsers: AdminUser[];
