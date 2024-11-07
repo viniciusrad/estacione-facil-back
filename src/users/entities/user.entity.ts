@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { UserType } from '../admin/enums/user-type.enum';
 
 @Entity('users')  // Definindo explicitamente o nome da tabela
@@ -7,26 +7,26 @@ export class User {
   id: number;
 
   @Column({ name: 'nome' })
-  readonly nome: string;
+  nome: string;
 
   @Column({ name: 'email' })
-  readonly email: string;
+  email: string;
 
   @Column({ name: 'cpf' })
-  readonly cpf: string;
+  cpf: string;
 
   @Column({ name: 'telefone' })
-  readonly telefone: string;
+  telefone: string;
 
   @Column({ name: 'senha' })
-  readonly senha: string;
+  senha: string;
 
   @Column({ name: 'tipo_usuario' })
-  readonly tipo: UserType;
+  tipo: UserType;
 
-  @Column({ name: 'created_at' })
-  readonly createdAt: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
 
-  @Column({ name: 'updated_at' })
-  readonly updatedAt: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 } 

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAdminUserDto } from './dto/create-admin-user.dto';
 import { CreateProprietarioDto } from './dto/create-proprietario.dto';
-import { CreateClienteDto } from './dto/create-cliente.dto';
+import { CreateClienteDto } from '../cliente/dto/create-cliente.dto';
 import { AdminUser } from '../entities/admin-user.entity';
 import { UserType } from './enums/user-type.enum';
 import { mockUsers } from '../mock/users.mock';
