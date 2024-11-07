@@ -5,15 +5,16 @@ import { AdminUser } from '../entities/admin-user.entity';
 import { CreateProprietarioDto } from './dto/create-proprietario.dto';
 import { UpdateProprietarioDto } from './dto/update-proprietario.dto';
 import { UserType } from '../admin/enums/user-type.enum';
+import { User } from '../entities/user.entity';
 
 @Injectable()
 export class ProprietarioService {
   constructor(
-    @InjectRepository(AdminUser)
-    private readonly adminUserRepository: Repository<AdminUser>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
-  async create(createProprietarioDto: CreateProprietarioDto): Promise<AdminUser> {
+  async create(createProprietarioDto: CreateProprietarioDto): Promise<User> {
     const existingUserEmail = await this.findByEmail(createProprietarioDto.email);
     if (existingUserEmail) {
       throw new BadRequestException('Email já cadastrado');
@@ -24,22 +25,22 @@ export class ProprietarioService {
       throw new BadRequestException('CPF já cadastrado');
     }
 
-    const proprietario = this.adminUserRepository.create({
+    const proprietario = this.userRepository.create({
       ...createProprietarioDto,
       tipo: UserType.PROPRIETARIO,
     });
 
-    return await this.adminUserRepository.save(proprietario);
+    return await this.userRepository.save(proprietario);
   }
 
-  async findAll(): Promise<AdminUser[]> {
-    return await this.adminUserRepository.find({
+  async findAll(): Promise<User[]> {
+    return await this.userRepository.find({
       where: { tipo: UserType.PROPRIETARIO }
     });
   }
 
-  async findOne(id: number): Promise<AdminUser> {
-    const proprietario = await this.adminUserRepository.findOne({
+  async findOne(id: number): Promise<User> {
+    const proprietario = await this.userRepository.findOne({
       where: { id, tipo: UserType.PROPRIETARIO }
     });
 
@@ -67,20 +68,25 @@ export class ProprietarioService {
       }
     }
 
-    await this.adminUserRepository.update(id, updateProprietarioDto);
+    await this.userRepository.update(id, updateProprietarioDto);
     return await this.findOne(id);
   }
 
   async remove(id: number): Promise<void> {
     const proprietario = await this.findOne(id);
-    await this.adminUserRepository.remove(proprietario);
+    await this.userRepository.remove(proprietario);
   }
 
-  async findByEmail(email: string): Promise<AdminUser | undefined> {
-    return await this.adminUserRepository.findOne({ where: { email } });
+  async findByEmail(email: string): Promise<User | undefined> {
+    return await this.userRepository.findOne({ where: { email } });
   }
 
-  async findByCpf(cpf: string): Promise<AdminUser | undefined> {
-    return await this.adminUserRepository.findOne({ where: { cpf } });
+  async findByCpf(cpf: string): Promise<User | undefined> {
+    return await this.userRepository.findOne({ 
+      where: { 
+        cpf,
+        tipo: UserType.PROPRIETARIO 
+      } 
+    });
   }
 } 

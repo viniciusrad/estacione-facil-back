@@ -11,7 +11,6 @@ export class CreateProprietarioDto {
   email: string;
 
   @IsNotEmpty()
-  @Length(11, 11)
   cpf: string;
 
   @IsNotEmpty()

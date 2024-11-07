@@ -3,23 +3,24 @@ import { ProprietarioService } from './proprietario.service';
 import { CreateProprietarioDto } from './dto/create-proprietario.dto';
 import { UpdateProprietarioDto } from './dto/update-proprietario.dto';
 import { AdminUser } from '../entities/admin-user.entity';
+import { User } from '../entities/user.entity';
 
 @Controller('proprietario')
 export class ProprietarioController {
   constructor(private readonly proprietarioService: ProprietarioService) {}
 
-  @Post('cadastro')
-  async create(@Body() createProprietarioDto: CreateProprietarioDto): Promise<AdminUser> {
+  @Post()
+  async create(@Body() createProprietarioDto: CreateProprietarioDto): Promise<User> {
     return await this.proprietarioService.create(createProprietarioDto);
   }
 
   @Get()
-  async findAll(): Promise<AdminUser[]> {
+  async findAll(): Promise<User[]> {
     return await this.proprietarioService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<AdminUser> {
+  async findOne(@Param('id') id: string): Promise<User> {
     return await this.proprietarioService.findOne(+id);
   }
 
