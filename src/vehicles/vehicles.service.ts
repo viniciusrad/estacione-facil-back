@@ -2,28 +2,34 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { Vehicle } from './entities/vehicle.entity';
 import { mockVehicles } from './mock/vehicles.mock';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 /**
  * Service for managing vehicles.
  */
 @Injectable()
 export class VehiclesService {
+
+  constructor(
+    @InjectRepository(Vehicle)
+    private readonly vehicleRepository: Repository<Vehicle>,
+  ) {}
+
   private vehicles: Vehicle[] = [...mockVehicles];
 
   /**
    * Add a new vehicle.
    * @param createVehicleDto - Data transfer object for creating a vehicle.
    */
-  create(createVehicleDto: CreateVehicleDto): Vehicle {
-    const vehicle = {
-      id: Math.max(...this.vehicles.map(v => v.id)) + 1,
+  async create(createVehicleDto: CreateVehicleDto): Promise<Vehicle> {
+    const vehicle = this.vehicleRepository.create({
       ...createVehicleDto,
       createdAt: new Date(),
       updatedAt: new Date(),
-    };
-
-    this.vehicles.push(vehicle);
-    return vehicle;
+      proprietario: createVehicleDto.proprietario,
+    });
+    return await this.vehicleRepository.save(vehicle);
   }
 
   /**

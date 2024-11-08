@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { UserType } from '../admin/enums/user-type.enum';
+import { Vehicle } from 'src/vehicles/entities/vehicle.entity';
 
 @Entity('users')  // Definindo explicitamente o nome da tabela
 export class User {
@@ -23,6 +24,9 @@ export class User {
 
   @Column({ name: 'tipo_usuario' })
   tipo: UserType;
+
+  @OneToMany(() => Vehicle, vehicle => vehicle.proprietario, { cascade: true, nullable: true })
+  vehicles?: Vehicle[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

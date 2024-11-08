@@ -17,6 +17,7 @@ export class AdminUsersService {
       id: Math.max(...this.users.map(u => u.id)) + 1,
       ...createUserDto,
       tipo: createUserDto.tipo,
+      vehicles: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };

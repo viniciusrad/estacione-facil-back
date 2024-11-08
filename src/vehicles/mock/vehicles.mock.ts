@@ -1,4 +1,6 @@
+import { UserType } from 'src/users/admin/enums/user-type.enum';
 import { Vehicle } from '../entities/vehicle.entity';
+import { User } from 'src/users/entities/user.entity';
 
 export const mockVehicles: Vehicle[] = [
   {
@@ -8,6 +10,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Honda',
     model: 'Civic',
     year: 2023,
+    proprietario: {
+      id: 1,
+      nome: 'João Silva',
+      email: 'joao.silva@example.com',
+      cpf: '123.456.789-00',
+      telefone: '(11) 91234-5678',
+      senha: 'senha123',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-01T00:00:00Z'),
+      updatedAt: new Date('2023-01-01T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -18,6 +32,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Volkswagen',
     model: 'Golf',
     year: 2021,
+    proprietario: {
+      id: 2,
+      nome: 'Maria Oliveira',
+      email: 'maria.oliveira@example.com',
+      cpf: '234.567.890-12',
+      telefone: '(21) 98765-4321',
+      senha: 'senha456',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-02T00:00:00Z'),
+      updatedAt: new Date('2023-01-02T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -28,6 +54,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Hyundai',
     model: 'HB20',
     year: 2022,
+    proprietario: {
+      id: 3,
+      nome: 'Carlos Souza',
+      email: 'carlos.souza@example.com',
+      cpf: '345.678.901-23',
+      telefone: '(31) 99876-5432',
+      senha: 'senha789',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-03T00:00:00Z'),
+      updatedAt: new Date('2023-01-03T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -38,6 +76,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Chevrolet',
     model: 'Onix',
     year: 2023,
+    proprietario: {
+      id: 4,
+      nome: 'Ana Pereira',
+      email: 'ana.pereira@example.com',
+      cpf: '456.789.012-34',
+      telefone: '(41) 98765-4321',
+      senha: 'senha012',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-04T00:00:00Z'),
+      updatedAt: new Date('2023-01-04T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -48,6 +98,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Fiat',
     model: 'Pulse',
     year: 2022,
+    proprietario: {
+      id: 5,
+      nome: 'Pedro Alves',
+      email: 'pedro.alves@example.com',
+      cpf: '567.890.123-45',
+      telefone: '(51) 97654-3210',
+      senha: 'senha345',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-05T00:00:00Z'),
+      updatedAt: new Date('2023-01-05T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -58,6 +120,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Jeep',
     model: 'Renegade',
     year: 2023,
+    proprietario: {
+      id: 6,
+      nome: 'Lucas Martins',
+      email: 'lucas.martins@example.com',
+      cpf: '678.901.234-56',
+      telefone: '(61) 96543-2109',
+      senha: 'senha678',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-06T00:00:00Z'),
+      updatedAt: new Date('2023-01-06T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   },
@@ -68,6 +142,18 @@ export const mockVehicles: Vehicle[] = [
     brand: 'Toyota',
     model: 'Corolla',
     year: 2022,
+    proprietario: {
+      id: 7,
+      nome: 'Fernanda Lima',
+      email: 'fernanda.lima@example.com',
+      cpf: '789.012.345-67',
+      telefone: '(71) 95432-1098',
+      senha: 'senha901',
+      tipo: UserType.PROPRIETARIO,
+      vehicles: [],
+      createdAt: new Date('2023-01-07T00:00:00Z'),
+      updatedAt: new Date('2023-01-07T00:00:00Z'),
+    },
     createdAt: new Date(),
     updatedAt: new Date()
   }
