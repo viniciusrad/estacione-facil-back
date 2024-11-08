@@ -14,7 +14,6 @@ export class ClienteController {
 
   @Get()
   findAll() {
-    console.log('findAll');
     return this.clienteService.findAll();
   }
 
