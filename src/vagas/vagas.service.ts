@@ -1,40 +1,48 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVagaDto } from './dto/create-vaga.dto';
-import { Vaga } from './interfaces/vaga.interface';
-import { VAGAS_MOCK } from './mock/vagas.mock';
+import { Vaga, TipoVaga, TipoContratacao, StatusVaga } from './entity/vaga.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class VagasService {
-  private vagas: Vaga[] = [...VAGAS_MOCK];
-  private currentId = 3; // Começando do 3 já que temos 2 vagas no mock
+  constructor(
+    @InjectRepository(Vaga)
+    private readonly vagaRepository: Repository<Vaga>,
+  ) {}
 
-  create(createVagaDto: CreateVagaDto): Vaga {
-    const vaga: Vaga = {
-      id: (this.currentId + 1).toString(),
-      ...createVagaDto,
-      dataCriacao: new Date().toISOString(),
-      dataAtualizacao: new Date().toISOString(),
-    };
-
-    this.vagas.push(vaga);
-    this.currentId++;
-    return vaga;
+  async create(createVagaDto: CreateVagaDto): Promise<Vaga> {
+    const { tipoVaga, tipoContratacao, status, ...restDto } = createVagaDto;
+    
+    const vaga = this.vagaRepository.create({
+      ...restDto,
+      tipoVaga: tipoVaga as TipoVaga,
+      tipoContratacao: tipoContratacao as TipoContratacao,
+      status: status as StatusVaga,
+      dataCriacao: new Date(),
+      dataAtualizacao: new Date(),
+    });
+    return await this.vagaRepository.save(vaga);
   }
 
-  findAll(): Vaga[] {
-    return this.vagas;
+  async findAll(): Promise<Vaga[]> {
+    return await this.vagaRepository.find();
   }
 
-  findOne(id: string): Vaga {
-    return this.vagas.find(vaga => vaga.id === id);
+  async findOne(id: string): Promise<Vaga> {
+    return await this.vagaRepository.findOne({ where: { id } });
   }
 
-  delete(id: string): boolean {
-    const index = this.vagas.findIndex(vaga => vaga.id === id);
-    if (index >= 0) {
-      this.vagas.splice(index, 1);
-      return true;
-    }
-    return false;
+  async delete(id: string): Promise<boolean> {
+    const result = await this.vagaRepository.delete(id);
+    return result.affected > 0;
+  }
+
+  async update(id: string, updateVagaDto: Partial<Vaga>): Promise<Vaga> {
+    await this.vagaRepository.update(id, {
+      ...updateVagaDto,
+      dataAtualizacao: new Date(),
+    });
+    return this.findOne(id);
   }
 } 

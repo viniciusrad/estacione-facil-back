@@ -17,4 +17,7 @@ export class CreateVagaDto {
   // Metadados
   proprietarioId: string;
   status: 'disponivel' | 'indisponivel';
+
+  tipoVagaId: string; // ou tipoVaga: TipoVaga
+
 } 
