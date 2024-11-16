@@ -8,7 +8,7 @@ async function bootstrap(): Promise<void> {
 
   // Configuração mais permissiva do CORS
   app.enableCors({
-    origin: true, // Permite todas as origens em desenvolvimento
+    origin: 'http://localhost:4000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: '*', // Permite todos os headers
     exposedHeaders: '*',
