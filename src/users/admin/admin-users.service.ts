@@ -10,7 +10,9 @@ import { User } from '../entities/user.entity';
 
 @Injectable()
 export class AdminUsersService {
-  private users: AdminUser[] = [...mockUsers];
+  private users: User[] = [...mockUsers];
+
+  
 
   create(createUserDto: BaseUserDto): User {
     const user = {
@@ -26,27 +28,27 @@ export class AdminUsersService {
     return user;
   }
 
-  findAll(): AdminUser[] {
+  findAll(): User[] {
     return this.users;
   }
 
-  findOne(id: number): AdminUser {
+  findOne(id: number): User {
     return this.users.find(user => user.id === id);
   }
 
-  findByType(tipo: UserType): AdminUser[] {
+  findByType(tipo: UserType): User[] {
     return this.users.filter(user => user.tipo === tipo);
   }
 
-  findByEmail(email: string): AdminUser | undefined {
+  findByEmail(email: string): User | undefined {
     return this.users.find(user => user.email === email);
   }
 
-  findByCpf(cpf: string): AdminUser | undefined {
+  findByCpf(cpf: string): User | undefined {
     return this.users.find(user => user.cpf === cpf);
   }
 
-  update(id: number, updateUserDto: Partial<AdminUser>): AdminUser {
+  update(id: number, updateUserDto: Partial<User>): User {
     const userIndex = this.users.findIndex(user => user.id === id);
     if (userIndex === -1) {
       throw new NotFoundException(`Usuário com ID ${id} não encontrado`);
@@ -70,7 +72,7 @@ export class AdminUsersService {
     this.users.splice(userIndex, 1);
   }
 
-  getAllMockUsers(): AdminUser[] {
+  getAllMockUsers(): User[] {
     return mockUsers;
   }
 } 
