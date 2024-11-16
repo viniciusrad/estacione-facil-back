@@ -104,4 +104,13 @@ export class VehiclesService {
     }
     this.vehicles.splice(vehicleIndex, 1);
   }
-}
+
+  /**
+   * Busca veículos pelo ID do proprietário.
+   * @param proprietarioId - ID do proprietário.
+   * @returns Lista de veículos pertencentes ao proprietário especificado.
+   */
+  async findByProprietarioId(proprietarioId: number): Promise<Vehicle[]> {
+    return await this.vehicleRepository.find({ where: { proprietario: { id: proprietarioId } } });
+  }
+} 

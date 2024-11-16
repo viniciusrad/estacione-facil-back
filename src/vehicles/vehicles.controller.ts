@@ -72,4 +72,9 @@ export class VehiclesController {
   remove(@Param('id') id: string): void {
     this.vehiclesService.remove(+id);
   }
+
+  @Get('proprietario/:id')
+  async findByProprietario(@Param('id') id: string): Promise<Vehicle[]> {
+    return await this.vehiclesService.findByProprietarioId(+id);
+  }
 } 
