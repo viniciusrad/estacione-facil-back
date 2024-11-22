@@ -7,6 +7,7 @@ export enum TipoVaga {
 }
 
 export enum TipoContratacao {
+  AMBAS = 'ambas',
   HORA = 'hora',
   DIARIA = 'diaria',
 }

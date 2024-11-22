@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateVagaDto } from './dto/create-vaga.dto';
 import { Vaga, TipoVaga, TipoContratacao, StatusVaga } from './entity/vaga.entity';
 import { Repository } from 'typeorm';
@@ -38,11 +38,31 @@ export class VagasService {
     return result.affected > 0;
   }
 
+  async fetchIndisponiveis(): Promise<Vaga[]> {
+    return await this.vagaRepository.find({ where: { status: StatusVaga.INDISPONIVEL } });
+  }
+
+  
+
   async update(id: string, updateVagaDto: Partial<Vaga>): Promise<Vaga> {
     await this.vagaRepository.update(id, {
       ...updateVagaDto,
       dataAtualizacao: new Date(),
     });
     return this.findOne(id);
+  }
+
+  async alterarStatusVaga(id: string): Promise<Vaga> {
+    const vaga = await this.vagaRepository.findOne({ where: { id } });
+    
+    if (!vaga) {
+      throw new NotFoundException(`Vaga com ID ${id} não encontrada`);
+    }
+
+    // Inverte o status atual da vaga
+    vaga.status = vaga.status === StatusVaga.DISPONIVEL ? StatusVaga.INDISPONIVEL : StatusVaga.DISPONIVEL;
+
+    // Salva a vaga atualizada no banco
+    return await this.vagaRepository.save(vaga);
   }
 } 

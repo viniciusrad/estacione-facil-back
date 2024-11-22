@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete, Patch } from '@nestjs/common';
 import { VagasService } from './vagas.service';
 import { CreateVagaDto } from './dto/create-vaga.dto';
 import { Vaga } from './entity/vaga.entity';
@@ -17,6 +17,11 @@ export class VagasController {
     return await this.vagasService.findAll();
   }
 
+  @Get('indisponiveis')
+  async fetchIndisponiveis(): Promise<Vaga[]> {
+    return await this.vagasService.fetchIndisponiveis();
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Vaga> {
     return await this.vagasService.findOne(id);
@@ -25,5 +30,10 @@ export class VagasController {
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<boolean> {
     return await this.vagasService.delete(id);
+  }
+
+  @Patch('status/:id')
+  async alterarStatus(@Param('id') id: string): Promise<Vaga> {
+    return await this.vagasService.alterarStatusVaga(id);
   }
 } 
