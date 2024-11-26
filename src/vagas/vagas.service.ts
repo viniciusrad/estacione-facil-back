@@ -25,6 +25,10 @@ export class VagasService {
     return await this.vagaRepository.save(vaga);
   }
 
+  async findByUserId(userId: string): Promise<Vaga[]> {
+    return await this.vagaRepository.find({ where: { proprietarioId: userId } });
+  }
+
   async findAll(): Promise<Vaga[]> {
     return await this.vagaRepository.find();
   }

@@ -27,6 +27,11 @@ export class VagasController {
     return await this.vagasService.findOne(id);
   }
 
+  @Get('user/:userId')
+  async findByUserId(@Param('userId') userId: string): Promise<Vaga[]> {
+    return await this.vagasService.findByUserId(userId);
+  }
+
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<boolean> {
     return await this.vagasService.delete(id);
