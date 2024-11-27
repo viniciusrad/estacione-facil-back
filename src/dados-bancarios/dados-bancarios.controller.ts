@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { DadosBancariosService } from './dados-bancarios.service';
 import { CreateDadosBancariosDto } from './dto/create-dados-bancarios.dto';
 import { DadosBancarios } from './entity/dados-bancarios.entity';
+import { UpdateResult } from 'typeorm';
 
 @Controller('dados-bancarios')
 export class DadosBancariosController {
@@ -25,6 +26,11 @@ export class DadosBancariosController {
   @Get('user/:userId')
   async findByUserId(@Param('userId') userId: string): Promise<DadosBancarios[]> {
     return await this.dadosBancariosService.findByUserId(userId);
+  }
+
+  @Put('user/:id')
+  async updateByUserId(@Param('id') id: string, @Body() updateDadosBancariosDto: Partial<CreateDadosBancariosDto>): Promise<UpdateResult> {
+    return await this.dadosBancariosService.updateByUserId(id, updateDadosBancariosDto);
   }
 
   @Patch(':id')

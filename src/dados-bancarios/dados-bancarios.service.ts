@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { DadosBancarios } from './entity/dados-bancarios.entity';
 import { CreateDadosBancariosDto } from './dto/create-dados-bancarios.dto';
 
@@ -43,6 +43,14 @@ export class DadosBancariosService {
       dataAtualizacao: new Date(),
     });
     return this.findOne(id);
+  }
+
+  async updateByUserId(id: string, updateDadosBancariosDto: Partial<CreateDadosBancariosDto>): Promise<UpdateResult> {
+    const dadosBancarios = await this.dadosBancariosRepository.findOne({ where: { userId: id } });
+    if (!dadosBancarios) {
+      throw new NotFoundException('Dados bancários não encontrados');
+    }
+    return await this.dadosBancariosRepository.update(dadosBancarios.id, updateDadosBancariosDto);
   }
 
   async delete(id: string): Promise<boolean> {
