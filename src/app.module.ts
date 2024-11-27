@@ -7,6 +7,7 @@ import { VehiclesModule } from './vehicles/vehicles.module';
 import { CartoesModule } from './cartoes/cartoes.module';
 import { VagasModule } from './vagas/vagas.module';
 import { AgendamentoModule } from './agendamento/agendamento.module';
+import { DadosBancariosModule } from './dados-bancarios/dados-bancarios.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AgendamentoModule } from './agendamento/agendamento.module';
     CartoesModule,
     VagasModule,
     AgendamentoModule,
+    DadosBancariosModule,
   ],
 })
 export class AppModule { } 
