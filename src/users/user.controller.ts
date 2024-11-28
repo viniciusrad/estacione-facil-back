@@ -61,8 +61,9 @@ export class UserController {
     return this.userService.update(+id, updateUserDto);
 }
 
-//      @Delete(':id')
-//   async remove(@Param('id') id: string): Promise<void> {
-//     await this.userService.remove(+id);
-//   }
+     @Delete(':id')
+  async remove(@Param('id') id: string): Promise<boolean> {
+    return await this.userService.delete(+id);
+  }
 }
+  

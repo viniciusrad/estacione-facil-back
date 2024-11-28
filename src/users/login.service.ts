@@ -24,7 +24,7 @@ export class LoginService {
           email: email,
           senha: senha
         },
-        select: ['id', 'nome', 'email', 'cpf', 'telefone', 'tipo'] // Não retorna a senha
+        select: ['id', 'nome', 'email', 'cpf', 'telefone', 'tipo']
       });
 
       if (!usuario) {
